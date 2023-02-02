@@ -1,10 +1,11 @@
 import TopAppBar from "./TopAppBar";
-import { Box, Typography } from "@mui/material"; 
+import { Box, Button, Typography } from "@mui/material"; 
 import React from 'react';
 import mePhoto from "./me.jpeg";
 
-export default function LandingPage() {
+export default function LandingPage(props: { handleTest: any }) {
 
+    const{handleTest} = props
 
     const schoolName = "The Ohio State University";
 
@@ -16,7 +17,7 @@ export default function LandingPage() {
             height: "100vh",
             flexDirection: "column"
         }}>
-        <TopAppBar title="Home"/>
+        <TopAppBar title="Home" handleTest={handleTest}/>
             <Box display="flex" width="100%" justifyContent="center">
                 <Typography variant='h1' color='textPrimary' style={{whiteSpace: 'pre-line'}}>
                   Hello there! {'\n'}I'm William.

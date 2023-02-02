@@ -79,6 +79,7 @@ const darkTheme = createTheme({
     }
   };
 
+
   
 
 
@@ -92,5 +93,68 @@ const darkTheme = createTheme({
     },
     components
   })
+
+  lightTheme.typography.h1 = {
+    fontWeight: "100",
+    fontFamily: "Roboto",
+    color: "rgba(255, 255, 255, 0.7)",
+    [lightTheme.breakpoints.up('xs')]: {
+        fontSize: '3rem'
+    },
+    [lightTheme.breakpoints.up('sm')]: {
+        fontSize: '4rem',
+    },
+    [lightTheme.breakpoints.up('md')]: {
+      fontSize: '5rem',
+    },
+    [lightTheme.breakpoints.up('lg')]: {
+        fontSize: '6rem',
+    },
+    [lightTheme.breakpoints.up('xl')]: {
+        fontSize: '7rem',
+    }
+  };
+
+  lightTheme.typography.body1 = {
+    fontWeight: "100",
+    fontFamily: "Roboto",
+    color: "black",
+    [lightTheme.breakpoints.up('xs')]: {
+        fontSize: '1rem'
+    },
+    [lightTheme.breakpoints.up('sm')]: {
+        fontSize: '2rem',
+    },
+    [lightTheme.breakpoints.up('md')]: {
+      fontSize: '3rem',
+    },
+    [lightTheme.breakpoints.up('lg')]: {
+        fontSize: '4rem',
+    },
+    [lightTheme.breakpoints.up('xl')]: {
+        fontSize: '5rem',
+    }
+  };
+
+  lightTheme.typography.h4 = {
+    fontWeight: "100",
+    fontFamily: "Roboto",
+    color: "black",
+    [lightTheme.breakpoints.up('xs')]: {
+        fontSize: '2rem'
+    },
+    [lightTheme.breakpoints.up('sm')]: {
+        fontSize: '3rem',
+    },
+    [lightTheme.breakpoints.up('md')]: {
+      fontSize: '4rem',
+    },
+    [lightTheme.breakpoints.up('lg')]: {
+        fontSize: '5rem',
+    },
+    [lightTheme.breakpoints.up('xl')]: {
+        fontSize: '6rem',
+    }
+  };
   
   export { darkTheme, lightTheme };

@@ -11,7 +11,7 @@ export default function About() {
             height: "100vh",
             flexDirection: "column"
         }}>
-            <TopAppBar title='About'/>
+            
             <Typography variant="h2">Actually care infested hell-hole</Typography>
         </Box>
         

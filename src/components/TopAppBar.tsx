@@ -4,13 +4,17 @@ import ClearIcon from '@mui/icons-material/Clear';
 import React, { useEffect } from 'react';
 import { DarkMode, LightMode } from '@mui/icons-material';
 import toggleTheme from '../App';
+import HandleThemeChange from '../App';
+import { darkTheme } from '../theme';
+import { HandleFunction } from 'connect';
 
 type AppBarProps = {
     title: string;
     showMenu?: boolean;
+    handleTest: any;
 }
 
-export default function TopAppBar({ title, showMenu }: AppBarProps) {
+export default function TopAppBar({ title, showMenu, handleTest }: AppBarProps) {
 
     let[open, setOpen] = React.useState(false);
     let[light, setLight] = React.useState(false);
@@ -24,6 +28,7 @@ export default function TopAppBar({ title, showMenu }: AppBarProps) {
         {
             setOpen(true);
         }
+
     };
 
     function HamburgerMenu(props: { isOpen: boolean; }) {
@@ -55,6 +60,7 @@ export default function TopAppBar({ title, showMenu }: AppBarProps) {
         {
             setLight(true);
         }
+        handleTest();
     }
 
     function ColorMode(props: {isLight: Boolean;}){
