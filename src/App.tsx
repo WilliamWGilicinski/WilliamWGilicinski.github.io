@@ -3,7 +3,7 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { darkTheme, lightTheme }  from './theme';
 import LoadingPage from './components/LoadingPage';
 import appRoutes from './appRoutes';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from 'react-query';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -28,12 +28,16 @@ export default function App() {
     
     const [selectedTheme, setSelectedTheme] = useState(darkTheme)
 
+
     const HandleThemeChange = (theme: any) => {
+
+
         setSelectedTheme(theme);
     }
 
+
     return (
-        <BrowserRouter>
+        <HashRouter>
             <ThemeProvider theme={selectedTheme}>
                 <QueryClientProvider client={queryClient}>
                     <Suspense fallback={
@@ -47,6 +51,6 @@ export default function App() {
                     </Suspense>
                 </QueryClientProvider>
             </ThemeProvider>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
