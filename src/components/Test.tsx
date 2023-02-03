@@ -3,9 +3,9 @@ import React from 'react'
 import handleTest from '../App'
 
 
-export default function Test(props: { handleTest: any }) {
+export default function Test(props: { handleThemeChange: any }) {
 
-    const {handleTest} = props
+    const {handleThemeChange} = props
     return (
         <Button onClick={handleTest}>Test</Button>
     )

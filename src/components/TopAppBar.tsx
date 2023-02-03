@@ -11,10 +11,10 @@ import { HandleFunction } from 'connect';
 type AppBarProps = {
     title: string;
     showMenu?: boolean;
-    handleTest: any;
+    handleThemeChange: any;
 }
 
-export default function TopAppBar({ title, showMenu, handleTest }: AppBarProps) {
+export default function TopAppBar({ title, showMenu, handleThemeChange }: AppBarProps) {
 
     let[open, setOpen] = React.useState(false);
     let[light, setLight] = React.useState(false);
@@ -60,7 +60,7 @@ export default function TopAppBar({ title, showMenu, handleTest }: AppBarProps) 
         {
             setLight(true);
         }
-        handleTest();
+        handleThemeChange();
     }
 
     function ColorMode(props: {isLight: Boolean;}){
@@ -75,7 +75,7 @@ export default function TopAppBar({ title, showMenu, handleTest }: AppBarProps) 
         }
     }
 
-    const pages = ['About', 'Something Else'];
+    const pages = ['About', 'Resume'];
 
     return (
         <Box sx={{ marginBottom: '80px'}}>

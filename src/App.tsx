@@ -3,18 +3,16 @@ import React, { Suspense, useEffect, useState } from 'react';
 import { darkTheme, lightTheme }  from './theme';
 import LoadingPage from './components/LoadingPage';
 // import appRoutes from './appRoutes';
-import { BrowserRouter, HashRouter, Route, RouteProps, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, RouteProps, Routes } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from 'react-query';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import { Theme } from '@mui/system/createTheme';
-import { DarkMode } from '@mui/icons-material';
-import useToggle from './useChangeTheme';
-import { storage } from './storage';
 import Test from './components/Test';
 import LandingPage from './components/LandingPage';
+import About from './components/About';
+import Resume from './components/Resume';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -28,6 +26,9 @@ const queryClient = new QueryClient({
 export default function App(this: any) {
     
     const [selectedTheme, setSelectedTheme] = useState(darkTheme);
+        // const savedTheme = JSON.stringify(localStorage.getItem("theme"));
+        // const initialState = JSON.parse(savedTheme);
+        // return initialState || darkTheme;
 
     const handleThemeChange = () => {
     console.log('test');
@@ -35,22 +36,24 @@ export default function App(this: any) {
     if(selectedTheme === darkTheme)
     {
         setSelectedTheme(lightTheme);
+        // localStorage.setItem("theme", JSON.stringify(lightTheme));
     }
     else
     {
         setSelectedTheme(darkTheme);
+        // localStorage.setItem("theme", JSON.stringify(darkTheme));
     }
 }
 
 //Had to bring in the routes inside App because I couldn't pass props otherwise
 const appRoutes: RouteProps[] = [
-    // {
-    //     path: '/about',
-    //     element: <About/>
-    // },
+    {
+        path: '/about',
+        element: <About handleThemeChange={handleThemeChange}/>
+    },
     {
         path: '/',
-        element: <LandingPage handleTest={handleThemeChange}/>
+        element: <LandingPage handleThemeChange={handleThemeChange}/>
     },
     // {
     //     path: 'load',
@@ -58,12 +61,16 @@ const appRoutes: RouteProps[] = [
     // },
     {
         path: '/test',
-        element: <Test handleTest={handleThemeChange}/>
+        element: <Test handleThemeChange={handleThemeChange}/>
+    },
+    {
+        path: 'resume',
+        element: <Resume handleThemeChange={handleThemeChange}/>
     }
 ];
 
     return (
-        <BrowserRouter>
+        <Router>
             <ThemeProvider theme={selectedTheme}>
                 <QueryClientProvider client={queryClient}>
                     <Suspense fallback={
@@ -77,6 +84,6 @@ const appRoutes: RouteProps[] = [
                     </Suspense>
                 </QueryClientProvider>
             </ThemeProvider>
-        </BrowserRouter>
+        </Router>
     );
 }

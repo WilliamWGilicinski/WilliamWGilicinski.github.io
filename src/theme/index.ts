@@ -4,7 +4,7 @@ import components from './components';
 
 const darkTheme = createTheme({
     palette: {
-        mode: 'dark',
+        mode: 'dark'
     },
     mixins: {
         navigationWidth: 240
@@ -37,7 +37,7 @@ const darkTheme = createTheme({
     }
   };
 
-  darkTheme.typography.body1 = {
+  darkTheme.typography.body2 = {
     fontWeight: "100",
     fontFamily: "Roboto",
     color: "rgba(255, 255, 255, 0.7)",
@@ -45,16 +45,37 @@ const darkTheme = createTheme({
         fontSize: '1rem'
     },
     [darkTheme.breakpoints.up('sm')]: {
-        fontSize: '2rem',
+        fontSize: '1.25rem',
     },
     [darkTheme.breakpoints.up('md')]: {
-      fontSize: '3rem',
+      fontSize: '1.5rem',
     },
     [darkTheme.breakpoints.up('lg')]: {
-        fontSize: '4rem',
+        fontSize: '1.75rem',
     },
     [darkTheme.breakpoints.up('xl')]: {
-        fontSize: '5rem',
+        fontSize: '2rem',
+    }
+  };
+
+  darkTheme.typography.body1 = {
+    fontWeight: "100",
+    fontFamily: "Roboto",
+    color: "rgba(255, 255, 255, 0.7)",
+    [darkTheme.breakpoints.up('xs')]: {
+        fontSize: '1.5rem'
+    },
+    [darkTheme.breakpoints.up('sm')]: {
+        fontSize: '1.75rem',
+    },
+    [darkTheme.breakpoints.up('md')]: {
+      fontSize: '2rem',
+    },
+    [darkTheme.breakpoints.up('lg')]: {
+        fontSize: '2.25rem',
+    },
+    [darkTheme.breakpoints.up('xl')]: {
+        fontSize: '2.75rem',
     }
   };
 

@@ -19,10 +19,10 @@ const appRoutes: RouteProps[] = [
     //     path: 'load',
     //     element: <LoadingPage/>
     // },
-    {
-        path: '/test',
-        element: <Test handleTest={handleTest}/>
-    }
+    // {
+    //     path: '/test',
+    //     element: <Test handleTest={handleTest}/>
+    // }
 ];
 
 export default appRoutes;
