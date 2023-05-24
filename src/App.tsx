@@ -1,4 +1,4 @@
-import { Box, ThemeProvider, Typography } from '@mui/material';
+import { Box, Theme, ThemeProvider, Typography } from '@mui/material';
 import React, { Suspense, useEffect, useState } from 'react';
 import { darkTheme, lightTheme }  from './theme';
 import LoadingPage from './components/LoadingPage';
@@ -22,26 +22,26 @@ const queryClient = new QueryClient({
     }
 })
 
+console.log("Hello");
+
 
 export default function App(this: any) {
     
     const [selectedTheme, setSelectedTheme] = useState(darkTheme);
-        // const savedTheme = JSON.stringify(localStorage.getItem("theme"));
-        // const initialState = JSON.parse(savedTheme);
-        // return initialState || darkTheme;
+
+    // useEffect(() => {
+    //     const selectedTheme = JSON.parse(localStorage.getItem('selectedTheme'));
+    //     localStorage.setItem('selectedTheme', JSON.stringify(selectedTheme));
+    // }, [selectedTheme])
 
     const handleThemeChange = () => {
-    console.log('test');
-    console.log(selectedTheme.palette);
     if(selectedTheme === darkTheme)
     {
         setSelectedTheme(lightTheme);
-        // localStorage.setItem("theme", JSON.stringify(lightTheme));
     }
     else
     {
         setSelectedTheme(darkTheme);
-        // localStorage.setItem("theme", JSON.stringify(darkTheme));
     }
 }
 
