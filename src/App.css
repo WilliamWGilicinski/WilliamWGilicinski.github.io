@@ -40,3 +40,7 @@
 .photo{
   border-radius: 50%;
 }
+
+.parent:hover {
+  background-color: aqua;
+}

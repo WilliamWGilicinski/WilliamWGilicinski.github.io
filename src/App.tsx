@@ -13,6 +13,7 @@ import Test from './components/Test';
 import LandingPage from './components/LandingPage';
 import About from './components/About';
 import Resume from './components/Resume';
+import Animation from './components/Animation';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -66,6 +67,10 @@ const appRoutes: RouteProps[] = [
     {
         path: 'resume',
         element: <Resume handleThemeChange={handleThemeChange}/>
+    },
+    {
+        path: '/animation',
+        element: <Animation handleThemeChange={handleThemeChange}/>
     }
 ];
 

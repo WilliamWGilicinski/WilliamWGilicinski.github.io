@@ -16,19 +16,19 @@ export default function LandingPage(props: { handleThemeChange: any }) {
         sx={{
             bgcolor: 'background.default',
             display: "flex",
-            minHeight: "100vh",
+            minHeight: "0vh",
             flexDirection: "column"
         }}>
             <TopAppBar title="Home" handleThemeChange={handleThemeChange}/>
-            <Box height={"100%"} flex="1 0 auto" overflow={"scroll"}>
-                <Box display="flex" width="100%" justifyContent="center">
+            <Box padding={0}>
+                <Box display="flex" justifyContent="center">
                     <Typography variant='h1' color='textPrimary' style={{whiteSpace: 'pre-line'}}>
                       Hello there {'\n'}I'm William.
                     </Typography>
                 </Box>
-                <Box marginTop="5%" display="flex" width="100%" justifyContent="center">
+                <Box marginTop="5%" display="flex" justifyContent="center">
                    <Typography variant='h4' color='textSecondary' style={{whiteSpace: 'pre-line'}} sx={{textAlign: "center"}}>
-                   A CS student at<Typography variant="body1" sx={[{'&:hover':{color: 'red'}}]}>{schoolName}</Typography>
+                   A CS student at<Typography variant="body1" sx={{'&:hover':{color: 'red'}}}>{schoolName}</Typography>
                    </Typography>
                 </Box>
                 <Box marginTop="10%" marginLeft="5%" display="flex" justifyContent="center">
