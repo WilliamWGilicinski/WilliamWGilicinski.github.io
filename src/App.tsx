@@ -1,3 +1,4 @@
+import "core-js";
 import { Box, Theme, ThemeProvider, Typography } from '@mui/material';
 import React, { Suspense, useEffect, useState } from 'react';
 import { darkTheme, lightTheme }  from './theme';
@@ -14,6 +15,9 @@ import LandingPage from './components/LandingPage';
 import About from './components/About';
 import Resume from './components/Resume';
 import Animation from './components/Animation';
+import BottomBar from './components/BottomBar';
+import TopAppBar from './components/TopAppBar';
+import WebGL from './components/WebGL';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -35,8 +39,8 @@ export default function App(this: any) {
     //     localStorage.setItem('selectedTheme', JSON.stringify(selectedTheme));
     // }, [selectedTheme])
 
-    const handleThemeChange = () => {
-    if(selectedTheme === darkTheme)
+    const handleThemeChange = (isLight: boolean) => {
+    if(isLight)
     {
         setSelectedTheme(lightTheme);
     }
@@ -56,10 +60,6 @@ const appRoutes: RouteProps[] = [
         path: '/',
         element: <LandingPage handleThemeChange={handleThemeChange}/>
     },
-    // {
-    //     path: 'load',
-    //     element: <LoadingPage/>
-    // },
     {
         path: '/test',
         element: <Test handleThemeChange={handleThemeChange}/>
@@ -71,6 +71,14 @@ const appRoutes: RouteProps[] = [
     {
         path: '/animation',
         element: <Animation handleThemeChange={handleThemeChange}/>
+    },
+    {
+        path: '/test',
+        element: <Test handleThemeChange={handleThemeChange}/>
+    },
+    {
+        path: '/webgl',
+        element: <WebGL handleThemeChange={handleThemeChange}/>
     }
 ];
 
@@ -84,7 +92,7 @@ const appRoutes: RouteProps[] = [
                         <Routes>
                             {appRoutes.map(({ ...routeProps }) =>
                                 <Route {...routeProps} key={routeProps.path as string} />
-                            )}
+                                )}          
                         </Routes>
                     </Suspense>
                 </QueryClientProvider>

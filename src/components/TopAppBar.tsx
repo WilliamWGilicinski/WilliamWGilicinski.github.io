@@ -1,12 +1,15 @@
 import { Box, Typography, AppBar, Drawer, Toolbar, IconButton, List, Button, ListItem, ListItemButton } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import ClearIcon from '@mui/icons-material/Clear';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { DarkMode, LightMode } from '@mui/icons-material';
 import toggleTheme from '../App';
-import HandleThemeChange from '../App';
+import handleThemeChange from '../App';
 import { darkTheme } from '../theme';
 import { HandleFunction } from 'connect';
+import { useMediaQuery } from 'react-responsive';
+import createPersistedState from 'use-persisted-state';
+const useColorSchemeState = createPersistedState("colorScheme");
 
 type AppBarProps = {
     title: string;
@@ -14,10 +17,11 @@ type AppBarProps = {
     handleThemeChange: any;
 }
 
+
 export default function TopAppBar({ title, showMenu, handleThemeChange }: AppBarProps) {
 
     let[open, setOpen] = React.useState(false);
-    let[light, setLight] = React.useState(false);
+    const { isDark, setIsDark } = useColorScheme();
 
     const handleDrawer = () => {
         if(open)
@@ -49,19 +53,38 @@ export default function TopAppBar({ title, showMenu, handleThemeChange }: AppBar
         return link;
     }
 
-
-    function handleMode()
-    {
-        if(light)
-        {
-            setLight(false);
+    function handleMode(){
+        if(isDark){
+            setIsDark(false);
+        } else{
+            setIsDark(true);
         }
-        else
-        {
-            setLight(true);
-        }
-        handleThemeChange();
     }
+
+    //From https://blog.logrocket.com/dark-mode-react-in-depth-guide/#implementing-color-scheme-toggle
+    function useColorScheme() {
+        const systemPrefersDark = useMediaQuery(
+          {
+            query: "(prefers-color-scheme: dark)",
+          },
+          undefined
+        );
+    
+        const [isDark, setIsDark] = useColorSchemeState();
+        const value = useMemo(
+          () => (isDark === undefined ? !!systemPrefersDark : isDark),
+          [isDark, systemPrefersDark]
+        );
+    
+        useEffect(() => {
+          handleThemeChange(!value);
+        }, [value]);
+    
+        return {
+          isDark: value,
+          setIsDark,
+        };
+      }
 
     function ColorMode(props: {isLight: Boolean;}){
         const isLight = props.isLight;
@@ -75,7 +98,7 @@ export default function TopAppBar({ title, showMenu, handleThemeChange }: AppBar
         }
     }
 
-    const pages = ['About', 'Resume', 'Animation'];
+    const pages = ['About', 'Resume', 'Animation', 'Test', 'WebGL'];
 
     return (
         <Box sx={{ marginBottom: '80px'}}>
@@ -88,7 +111,7 @@ export default function TopAppBar({ title, showMenu, handleThemeChange }: AppBar
                     )}
                     <Button sx={{color: "white"}} component='a' href='./' variant='text'>{title}</Button>
                     <IconButton onClick={handleMode}>
-                        <ColorMode isLight={light}/>
+                        <ColorMode isLight={!isDark}/>
                     </IconButton>
                 </Toolbar>
             </AppBar>
