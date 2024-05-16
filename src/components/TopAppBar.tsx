@@ -98,7 +98,7 @@ export default function TopAppBar({ title, showMenu, handleThemeChange }: AppBar
         }
     }
 
-    const pages = ['About', 'Resume', 'Animation', 'Test', 'WebGL'];
+    const pages = ['About', 'Resume', 'Animation', 'WebGL'];
 
     return (
         <Box sx={{ marginBottom: '80px'}}>

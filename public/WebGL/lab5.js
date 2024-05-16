@@ -1,3 +1,6 @@
+/**
+ * @type {{ viewportWidth: any; viewportHeight: any; clearColor: (arg0: number, arg1: number, arg2: number, arg3: number) => void; createTexture: () => any; bindTexture: (arg0: any, arg1: any) => void; TEXTURE_2D: any; texImage2D: (arg0: any, arg1: number, arg2: any, arg3: number, arg4: number, arg5: number | HTMLImageElement, arg6: undefined, arg7: undefined, arg8: Uint8Array | null | undefined) => void; RGBA: any; UNSIGNED_BYTE: any; generateMipmap: (arg0: any) => void; createBuffer: () => any; TEXTURE_CUBE_MAP: any; TEXTURE_CUBE_MAP_POSITIVE_X: any; TEXTURE_CUBE_MAP_NEGATIVE_X: any; TEXTURE_CUBE_MAP_POSITIVE_Y: any; TEXTURE_CUBE_MAP_NEGATIVE_Y: any; TEXTURE_CUBE_MAP_POSITIVE_Z: any; TEXTURE_CUBE_MAP_NEGATIVE_Z: any; texParameteri: (arg0: any, arg1: any, arg2: any) => void; TEXTURE_MIN_FILTER: any; LINEAR_MIPMAP_LINEAR: any; canvas: { clientWidth: number; clientHeight: number; width: any; height: any; }; viewport: (arg0: number, arg1: number, arg2: any, arg3: any) => void; clear: (arg0: number) => void; COLOR_BUFFER_BIT: number; DEPTH_BUFFER_BIT: number; enable: (arg0: any) => void; CULL_FACE: any; DEPTH_TEST: any; useProgram: (arg0: any) => void; activeTexture: (arg0: any) => void; TEXTURE0: any; TEXTURE1: any; depthFunc: (arg0: any) => void; LESS: any; TRIANGLES: any; drawArrays: (arg0: any, arg1: number, arg2: number) => void; bindBuffer: (arg0: any, arg1: any) => void; ARRAY_BUFFER: any; FLOAT: any; vertexAttribPointer: (arg0: any, arg1: number, arg2: any, arg3: boolean, arg4: number, arg5: number) => void; uniform4f: (arg0: any, arg1: number, arg2: number, arg3: number, arg4: number) => void; uniform4fv: (arg0: any, arg1: any) => void; uniform1f: (arg0: any, arg1: any) => void; uniformMatrix4fv: (arg0: any, arg1: boolean, arg2: any) => void; uniform3fv: (arg0: any, arg1: number[]) => void; uniform1i: (arg0: any, arg1: number) => void; LEQUAL: any; createProgram: () => any; attachShader: (arg0: any, arg1: any) => void; linkProgram: (arg0: any) => void; getProgramParameter: (arg0: any, arg1: any) => any; LINK_STATUS: any; getAttribLocation: (arg0: any, arg1: string) => any; getUniformLocation: (arg0: any, arg1: string) => any; enableVertexAttribArray: (arg0: any) => void; }}
+ */
 var gl;
 var shaderProgram;
 var skyboxShaderProgram;
@@ -189,22 +192,7 @@ function createObjects() {
 
     var objectName = objectData.name;
 
-    //Creates the light in the scene
-    if(!createdLight){
-
-        //Need these to reset the data
-        originalColor = objectData.color;
-
-        objectData.color = [255, 255, 0];
-        objectName = "light"
-        objectData.createData(true);
-
-        objectData.color = originalColor;
-        createdLight = true;
-    }
-    else{
-        objectData.createData(false);
-    }
+    objectData.createData(false);
     
     
     geoBuffer = gl.createBuffer();
@@ -549,7 +537,7 @@ function animateObjectsSpinning(now){
     // Every frame increase the rotation a little.
     rotation[1] += rotationSpeed * deltaTime;
 
-    requestAnimationFrame(drawScene);
+    //AnimationFrame(drawScene);
 }
 
 function addListeners(){
@@ -651,7 +639,7 @@ function addListeners(){
                 cameraPosition[2] -= moveStep;
                 break;
         }
-        requestAnimationFrame(drawScene);
+        //requestAnimationFrame(drawScene);
 
     });
 }

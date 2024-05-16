@@ -79,7 +79,7 @@ const appRoutes: RouteProps[] = [
     {
         path: '/webgl',
         element: <WebGL handleThemeChange={handleThemeChange}/>
-    }
+    },
 ];
 
     return (
