@@ -19,6 +19,7 @@ export const King = styled.div`
   background: url(${CharacterSheet}) left center;
   animation: ${animation} 2s steps(17) infinite;
   image-rendering: pixelated;
+  pointer-events: none
 `;
 
 export default King;

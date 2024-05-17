@@ -19,10 +19,10 @@ export default function Container(props: {handleThemeChange: any, title: any, pa
         }}>
             <Box sx={{paddingBottom: "30px"}}>
             <TopAppBar title={title} handleThemeChange={handleThemeChange}/>
-                
+               <Box sx={{minHeight: '80vh'}}>
                 {page}
-
-            <Box>
+                </Box> 
+            <Box marginTop={"10px"}>
                 <BottomBar/>
             </Box>
             </Box>

@@ -1,57 +1,133 @@
-import { Box, Button, Grid, Paper, Theme, Typography } from "@mui/material";
-import { makeStyles, createStyles } from "@mui/styles";
-import React from "react";
-import handleTest from "../App";
+import { Bodies, Composite, Engine, Runner } from "matter-js";
+import { MutableRefObject, createElement, useEffect, useRef, useState } from "react";
+import styled from "styled-components";
+import King from "./King";
+import Matter from "matter-js";
 import Container from "./Container";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    paper: {
-      padding: theme.spacing(2),
-      textAlign: "left",
-      color: theme.palette.text.secondary,
-    },
-  })
-);
+import TreeBackground from "./TreeBackground";
 
 export default function Test(props: { handleThemeChange: any }) {
-  const { handleThemeChange } = props;
-  const classes = useStyles();
+    const { handleThemeChange } = props;
 
-  const testPage = () => {
+
+    interface Object {
+        x: number;
+        y: number;
+        rot: number;
+    }
+
+    const boxRef = useRef(null) as any;
+    const canvasRef = useRef(null) as any;
+    const objects = useRef<Object[]>([]);
+    var playerObj = useRef<Body>() as any;
+    const [, setAnim] = useState(0);
+
+  useEffect(() => {
+
+    // module aliases
+    var Engine = Matter.Engine,
+        Render = Matter.Render,
+        Runner = Matter.Runner,
+        Composites = Matter.Composites,
+        Events = Matter.Events,
+        Constraint = Matter.Constraint,
+        MouseConstraint = Matter.MouseConstraint,
+        Mouse = Matter.Mouse,
+        Body = Matter.Body,
+        Composite = Matter.Composite,
+        Bodies = Matter.Bodies;
+
+    var engine = Engine.create();
+    var world = engine.world;
+
+    var render = Render.create({
+        element: boxRef.current,
+        engine: engine,
+        canvas: canvasRef.current,
+        options: {
+            background: 'transparent',
+            wireframes: false
+        }
+    });
+
+    Render.run(render);
+
+    var runner = Runner.create();
+    Runner.run(runner, engine);
+
+    // create two boxes and a ground
+    var player = Bodies.rectangle(400, 200, 80, 80, {render: {visible: false}});
+    playerObj.current = player;
+    var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
+
+    Composite.add(world, [ground, player]);
+
+    // add mouse control
+    var mouse = Mouse.create(render.canvas),
+        mouseConstraint = MouseConstraint.create(engine, {
+            mouse: mouse,
+            constraint: {
+                stiffness: 0.2,
+                render: {
+                    visible: false
+                }
+            }
+        });
+
+    Composite.add(world, mouseConstraint);
+
+    // keep the mouse in sync with rendering
+    render.mouse = mouse;
+
+    let unsubscribe: number;
+
+    function animate() {
+      let i = 0;
+      for (const body of Composite.allBodies(world)) {
+        if (body.isStatic) continue;
+        
+
+        if(playerObj.current === body){
+            objects.current[i] = { x: body.position.x, y: body.position.y, rot: body.angle };
+        }
+        
+
+        i += 1;
+      }
+
+      setAnim((x) => x + 1);
+
+      unsubscribe = requestAnimationFrame(animate);
+    }
+
+    unsubscribe = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(unsubscribe);
+    };
+  }, []);
+
+  var page = () => {
     return (
-      <div className={classes.root} >
-        <Grid container spacing={3} paddingBottom={"10vh"}>
-          <Grid item xs={12}>
-            <Paper className={classes.paper} sx={{height: "60vh"}}>
-                <iframe width="100%" height="100%" src="WebGL/index.html"/>
-            </Paper>
-          </Grid>
-          <Grid item xs={12}>
-            <Paper className={classes.paper}>To Use the program press the 'r', 'y', 'p' to change the camera orientation<br/>
-            To move the camera use 'v', 'c', 'f'<br/>
-            To move the objects use 'w', 'a', 's', 'd'<br/>
-            To move the objets orientation use 'b', 'n', 'm'<br/>
-            To move the light use 1-6. I did this on a keypad keyboard so 5, 1, 2, 3 are like w, a, s, d and 4 and 6 move the light up and down<br/>
-            Start the camera spinning around with 'z', and the objects spinning with 'x'<br/>
-            Note: Capital inputs determine which direction orientation inputs move<br/>
-             Chrome works the best so other browsers may have problems</Paper>
-          </Grid>
-        </Grid>
-      </div>
-    );
-  };
+        <div ref={boxRef}>
+            {objects.current.map((position, key) => (
+                <King
+                key={key}
+                style={{ top: position.y + 110, left: position.x + 60, rotate: `${position.rot}rad`}}
+                />
+            ))};
+        </div>
+    )
 
-  
+  }
+
+  var testPage = () => {
+    return (
+        <TreeBackground/>
+    )
+  }
 
   return (
-    <Container
-      handleThemeChange={handleThemeChange}
-      title="test"
-      page={testPage()}
-    />
+    <Container handleThemeChange={handleThemeChange} title="Test" page={page()}/>
   );
 }
