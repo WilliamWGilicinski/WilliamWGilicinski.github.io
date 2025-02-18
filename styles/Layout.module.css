@@ -1,0 +1,37 @@
+.navbar {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.navbarBrand {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.navLink {
+  font-size: 1.1rem;
+  margin-left: 1rem;
+  transition: color 0.3s ease;
+}
+
+.navLink:hover {
+  color: #17a2b8 !important;
+}
+
+.main {
+  min-height: calc(100vh - 56px - 80px);
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.footer {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+

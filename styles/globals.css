@@ -1,0 +1,55 @@
+:root {
+  --background: #ffffff;
+  --text: #000000;
+  --primary: #0070f3;
+  --secondary: #1a1a1a;
+}
+
+[data-theme="dark"] {
+  --background: #1a1a1a;
+  --text: #ffffff;
+  --primary: #3694ff;
+  --secondary: #f0f0f0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.content-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.dark {
+  background-color: var(--background);
+  color: var(--text);
+}
+
+.light {
+  background-color: var(--background);
+  color: var(--text);
+}
+
