@@ -10,8 +10,8 @@ export default function Home() {
 
   const MePic = "/me.png"
   const CutOut = "/cut_out.png"
-  const March1 = '/IMG_9183.jpg'
-  const March2 = '/IMG_9182.jpg'
+  const March1 = '/IMG_9183.JPG'
+  const March2 = '/IMG_9182.JPG'
 
 
   return (
