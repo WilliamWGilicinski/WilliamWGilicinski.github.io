@@ -17,6 +17,7 @@ export default function Layout({ children }: LayoutProps) {
       <Head>
         <title>WG Portfolio</title>
         <meta name="description" content="My personal portfolio" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no" />
         <link rel="icon" href="favicon.ico" />
       </Head>
 
@@ -46,7 +47,7 @@ export default function Layout({ children }: LayoutProps) {
         </Container>
       </Navbar>
 
-      <main className={`${styles.main} container-fluid px-0`} style={{ maxWidth: "1200px" }}>
+      <main className={`${styles.main} container-fluid w-100`} style={{ maxWidth: "1200px" }}>
         {children}
       </main>
 

@@ -13,6 +13,10 @@
 
 // module.exports = nextConfig
 
+//Use above for dev
+
+//Use below  for  exporting to static
+
 /**
  * @type {import('next').NextConfig}
  */

@@ -10,8 +10,8 @@ export default function Home() {
 
   const MePic = "/me.png"
   const CutOut = "/cut_out.png"
-  const March1 = 'IMG_9183.jpg'
-  const March2 = 'IMG_9182.jpg'
+  const March1 = '/IMG_9183.jpg'
+  const March2 = '/IMG_9182.jpg'
 
 
   return (
@@ -110,18 +110,20 @@ export default function Home() {
                     src={March1}
                     alt="Me performing ramp" 
                     className={`${styles.transitionImage} ${styles.primaryImage}`}
-                    width={1000}
-                    height={1000}
+                    width={500}
+                    height={500}
+                    style={{ maxWidth: '100%', height: 'auto' }}
                     priority
                     loading="eager"
                     unoptimized={true}
                 />
                 <Image 
-                    src={March2}  // Your second image
+                    src={March2}
                     alt="Also me performing ramp" 
                     className={`${styles.transitionImage} ${styles.secondaryImage}`}
-                    width={1000}
-                    height={1000}
+                    width={500}
+                    height={500}
+                    style={{ maxWidth: '100%', height: 'auto' }}
                     priority
                     loading="eager"
                     unoptimized={true}
