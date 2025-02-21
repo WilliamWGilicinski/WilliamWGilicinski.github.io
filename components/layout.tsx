@@ -13,7 +13,7 @@ export default function Layout({ children }: LayoutProps) {
   const { theme } = useTheme()
 
   return (
-    <div className={theme}>
+    <div className={theme} style={{ overflowX: 'hidden' }}>
       <Head>
         <title>WG Portfolio</title>
         <meta name="description" content="My personal portfolio" />
