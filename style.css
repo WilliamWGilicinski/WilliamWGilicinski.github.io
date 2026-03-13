@@ -94,7 +94,7 @@ canvas {
     animation-direction: alternate;
 }
 .container {
-  width: 33vw; /* Set the desired width for the container */
+  width: 600px; /* Set the desired width for the container */
   height: 33vh; /* Set the desired height for the container */
 }
 
